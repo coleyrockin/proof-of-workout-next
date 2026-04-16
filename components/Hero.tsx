@@ -19,11 +19,11 @@ export default function Hero({ data }: Props) {
   }
 
   const kpis = [
-    { val: s.vo2_max.toFixed(1),                    label: 'VO₂ MAX' },
-    { val: (s.steps_total / 1000).toFixed(0) + 'K', label: 'STEPS THIS WEEK' },
-    { val: s.active_calories_total.toLocaleString(), label: 'ACTIVE CAL' },
-    { val: s.exercise_minutes_total.toString(),      label: 'EXERCISE MIN' },
-    { val: s.workout_sessions.toString(),            label: 'WORKOUT SESSIONS' },
+    { val: s.vo2_max.toFixed(1),                    label: 'VO₂ MAX',          color: '#248bf5' },
+    { val: (s.steps_total / 1000).toFixed(0) + 'K', label: 'STEPS THIS WEEK',  color: '#34c759' },
+    { val: s.active_calories_total.toLocaleString(), label: 'ACTIVE CAL',       color: '#ffaa22' },
+    { val: s.exercise_minutes_total.toString(),      label: 'EXERCISE MIN',     color: '#b366ff' },
+    { val: s.workout_sessions.toString(),            label: 'WORKOUT SESSIONS', color: '#ff6b6b' },
   ]
 
   return (
@@ -75,7 +75,7 @@ export default function Hero({ data }: Props) {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px 0' }}>
           {kpis.slice(0, 3).map((k, i) => (
             <motion.div key={k.label} {...fadeUp(0.2 + i * 0.06)} style={{ display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'center' }}>
-              <span style={{ fontFamily: 'var(--font-display)', fontSize: '38px', lineHeight: 1, color: 'var(--color-wolf)' }}>{k.val}</span>
+              <span style={{ fontFamily: 'var(--font-display)', fontSize: '38px', lineHeight: 1, color: k.color }}>{k.val}</span>
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-white)' }}>{k.label}</span>
             </motion.div>
           ))}
@@ -83,7 +83,7 @@ export default function Hero({ data }: Props) {
         <div style={{ display: 'flex', justifyContent: 'center', gap: '48px', marginTop: '24px' }}>
           {kpis.slice(3).map((k, i) => (
             <motion.div key={k.label} {...fadeUp(0.38 + i * 0.06)} style={{ display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'center' }}>
-              <span style={{ fontFamily: 'var(--font-display)', fontSize: '38px', lineHeight: 1, color: 'var(--color-wolf)' }}>{k.val}</span>
+              <span style={{ fontFamily: 'var(--font-display)', fontSize: '38px', lineHeight: 1, color: k.color }}>{k.val}</span>
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-white)' }}>{k.label}</span>
             </motion.div>
           ))}
