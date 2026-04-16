@@ -174,6 +174,19 @@ export function IconLightning({ size = 20, color = 'currentColor', strokeWidth =
   )
 }
 
+export function IconPickleball({ size = 20, color = 'currentColor', strokeWidth = 1.5 }: IconProps) {
+  return (
+    <svg viewBox="0 0 20 20" style={{ ...base(size, strokeWidth), color }}>
+      <circle cx="10" cy="10" r="5" />
+      <circle cx="9" cy="8.5" r="0.6" fill="currentColor" stroke="none" />
+      <circle cx="11.5" cy="9.5" r="0.6" fill="currentColor" stroke="none" />
+      <circle cx="9.5" cy="11.5" r="0.6" fill="currentColor" stroke="none" />
+      <line x1="14" y1="6" x2="18" y2="2" />
+      <ellipse cx="18.5" cy="1.5" rx="1.2" ry="0.6" transform="rotate(-45 18.5 1.5)" />
+    </svg>
+  )
+}
+
 export const ACTIVITY_SVG_ICONS: Record<string, React.ComponentType<IconProps>> = {
   'Walking':          IconWalking,
   'Running':          IconRunning,
@@ -184,6 +197,7 @@ export const ACTIVITY_SVG_ICONS: Record<string, React.ComponentType<IconProps>> 
   'Core Training':    IconCore,
   'Stair Climbing':   IconStairs,
   'Skating':          IconSkating,
+  'Pickleball':       IconPickleball,
   'Unknown Activity': IconActivity,
 }
 

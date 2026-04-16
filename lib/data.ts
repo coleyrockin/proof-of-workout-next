@@ -38,7 +38,7 @@ export const weekData: WeekData = {
     { date: '2026-04-08', activity: 'Walking',          duration_min: 18,  calories: 103,  distance_mi: 1.06 },
     { date: '2026-04-08', activity: 'Weight Training',  duration_min: 14,  calories: 88,   distance_mi: null },
     { date: '2026-04-08', activity: 'Golf',             duration_min: 54,  calories: 399,  distance_mi: 0.73 },
-    { date: '2026-04-08', activity: 'Unknown Activity', duration_min: 28,  calories: 279,  distance_mi: null },
+    { date: '2026-04-08', activity: 'Pickleball',       duration_min: 28,  calories: 279,  distance_mi: null },
     { date: '2026-04-09', activity: 'Weight Training',  duration_min: 15,  calories: 75,   distance_mi: null },
     { date: '2026-04-09', activity: 'Weight Training',  duration_min: 8,   calories: 70,   distance_mi: null },
     { date: '2026-04-10', activity: 'Weight Training',  duration_min: 8,   calories: 70,   distance_mi: null },
