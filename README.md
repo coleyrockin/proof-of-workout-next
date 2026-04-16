@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# POWO — Proof of Workout
 
-## Getting Started
+A mobile-first fitness dashboard that renders a week of Apple Health data into a polished, dark-mode interface. Cardiac metrics, sleep stages, VO2 trends, workout logs, and achievements — all from real data, zero external UI libraries.
 
-First, run the development server:
+**Live:** [proof-of-workout-next.vercel.app](https://proof-of-workout-next.vercel.app)
+
+## Tech Stack
+
+- **Next.js 16** with App Router and static generation
+- **TypeScript** end-to-end
+- **Tailwind CSS v4** for design tokens and utility classes
+- **Framer Motion** for scroll-triggered animations
+- **Custom SVG icon system** — monoline, accessible, no icon library dependency
+- **Vercel** for deployment (push-to-deploy from `main`)
+
+## Features
+
+- 10 data sections: Hero KPIs, Weekly Summary, Daily Breakdown, Top Workouts, Cardiac Metrics, VO2 Max Trend, Sleep Analysis, Pushup Log, Achievements, Footer
+- Multi-color accent system with per-metric color coding
+- Responsive 375px mobile-first layout at 430px max-width
+- Horizontal scroll table for daily metrics that fits 7 columns without clipping
+- Top-6 workout sort by calorie burn with activity-specific SVG icons
+- Apple Health verified badge and data attribution
+
+## Local Development
 
 ```bash
+git clone https://github.com/coleyrockin/proof-of-workout-next.git
+cd proof-of-workout-next
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+app/          Next.js App Router pages and global styles
+components/   11 React components (Hero, DailyTable, WorkoutLog, etc.)
+lib/          TypeScript types, health data, and SVG icon library
+public/       Static assets
+```
 
-## Learn More
+## What This Demonstrates
 
-To learn more about Next.js, take a look at the following resources:
+- Component architecture without a UI framework — every card, table, chart, and icon built from scratch
+- Data visualization with pure SVG (VO2 trend chart, cardiac mini-charts, sleep stage bars)
+- Design system thinking: consistent spacing, typography scale, color tokens, and grid patterns
+- Accessibility: semantic HTML, ARIA labels on icons, structured table markup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
