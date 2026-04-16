@@ -38,7 +38,7 @@ export default function Hero({ data }: Props) {
         }}
         aria-hidden
       >
-        PROOF
+        POWO
       </div>
 
       {/* Apple Health badge */}
@@ -60,8 +60,7 @@ export default function Hero({ data }: Props) {
           fontSize: 'clamp(56px, 18vw, 120px)', marginBottom: '6px',
         }}
       >
-        PROOF OF<br />
-        <span style={{ color: 'var(--color-wolf)' }}>WORKOUT</span>
+        <span style={{ color: 'var(--color-wolf)' }}>PO</span><span style={{ color: 'var(--color-white)' }}>WO</span>
       </motion.h1>
 
       {/* Subtitle */}
