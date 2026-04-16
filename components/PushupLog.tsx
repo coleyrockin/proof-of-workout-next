@@ -24,7 +24,7 @@ export default function PushupLog({ pushups, total }: Props) {
   return (
     <section>
       <SectionHeader label="Pushup Log" meta="Week of Apr 6–12" />
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '1px', background: 'var(--color-border)', border: '1px solid var(--color-border)', borderTop: 'none' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1px', background: 'var(--color-border)', border: '1px solid var(--color-border)', borderTop: 'none' }}>
         {pushups.map((p, i) => (
           <motion.div
             key={p.date}
