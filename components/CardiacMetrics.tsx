@@ -48,10 +48,10 @@ export default function CardiacMetrics({ daily }: Props) {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.06 }}
-            style={{ background: 'var(--color-card)', padding: '18px 16px' }}
+            style={{ background: 'var(--color-card)', padding: '14px 12px' }}
           >
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-mid)', marginBottom: '8px' }}>{v.label}</div>
-            <div style={{ fontFamily: 'var(--font-display)', fontSize: '30px', lineHeight: 1, color: v.good ? 'var(--color-wolf)' : 'var(--color-white)' }}>{v.main}</div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-mid)', marginBottom: '6px' }}>{v.label}</div>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: '24px', lineHeight: 1, color: v.good ? 'var(--color-wolf)' : 'var(--color-white)' }}>{v.main}</div>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', color: 'var(--color-mid)', marginTop: '4px' }}>{v.sub}</div>
             <MiniChart values={v.values} color={v.color} max={v.max} />
           </motion.div>

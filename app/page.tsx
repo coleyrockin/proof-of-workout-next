@@ -15,7 +15,7 @@ export default function Page() {
   return (
     <main style={{ maxWidth: '430px', margin: '0 auto', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Hero data={d} />
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', padding: '0 0 40px' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '28px', padding: '0 0 28px' }}>
         <WeeklySummary summary={d.weekly_summary} />
         <DailyTable daily={d.daily} />
         <WorkoutLog workouts={d.workouts} />

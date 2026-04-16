@@ -64,7 +64,7 @@ export default function Hero({ data }: Props) {
       </motion.h1>
 
       {/* Subtitle */}
-      <motion.div {...fadeUp(0.15)} style={{ fontFamily: 'var(--font-mono)', fontSize: '13px', color: 'var(--color-mid)', letterSpacing: '0.06em', marginTop: '16px' }}>
+      <motion.div {...fadeUp(0.15)} style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--color-mid)', letterSpacing: '0.04em', marginTop: '16px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
         COLEY &nbsp;·&nbsp;{' '}
         <span style={{ color: 'var(--color-wolf2)' }}>{fmtDate(weekStart)} – {fmtDate(weekEnd)}, 2026</span>
         &nbsp;·&nbsp; WEEK 15

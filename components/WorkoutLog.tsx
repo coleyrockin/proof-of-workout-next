@@ -1,7 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
 import SectionHeader from './SectionHeader'
-import { ACTIVITY_ICONS } from '@/lib/data'
+import { ACTIVITY_SVG_ICONS } from '@/lib/icons'
 import type { Workout } from '@/lib/types'
 
 interface Props { workouts: Workout[] }
@@ -26,16 +26,16 @@ export default function WorkoutLog({ workouts }: Props) {
               viewport={{ once: true }}
               transition={{ duration: 0.35, delay: (i % 6) * 0.04 }}
               style={{
-                padding: '18px 16px',
-                display: 'flex', flexDirection: 'column', gap: '10px',
+                padding: '14px 12px',
+                display: 'flex', flexDirection: 'column', gap: '8px',
                 background: highlight ? '#0c1200' : 'var(--color-card)',
                 ...(highlight ? { border: '1px solid #2a4400', margin: '-1px' } : {}),
               }}
             >
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', letterSpacing: '0.1em', color: 'var(--color-mid)' }}>{fmtDate(w.date)}</div>
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '8px' }}>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: '18px', letterSpacing: '1px', display: 'flex', alignItems: 'center', gap: '6px', color: highlight ? 'var(--color-wolf)' : 'var(--color-white)' }}>
-                  <span style={{ fontSize: '15px' }}>{ACTIVITY_ICONS[w.activity] ?? '🔥'}</span>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: '15px', letterSpacing: '1px', display: 'flex', alignItems: 'center', gap: '6px', color: highlight ? 'var(--color-wolf)' : 'var(--color-white)' }}>
+                  {(() => { const Icon = ACTIVITY_SVG_ICONS[w.activity] ?? ACTIVITY_SVG_ICONS['Unknown Activity']; return <Icon size={16} />; })()}
                   {w.activity === 'Unknown Activity' ? 'Activity' : w.activity}
                 </div>
                 <div style={{
