@@ -34,7 +34,7 @@ export default function CardiacMetrics({ daily }: Props) {
     { label: 'Average Heart Rate',   main: '89 bpm',  sub: 'all-day avg',                    good: false, values: daily.map(d => Math.round(d.avg_heart_rate)),  max: 150, color: 'var(--color-blue)' },
     { label: 'Walking HR Avg',       main: '107 bpm', sub: 'includes sprints/jogs',          good: false, values: daily.map(d => Math.round(d.walking_heart_rate)),max:160, color: 'var(--color-wolf)' },
     { label: 'Resp Rate',             main: '14.8 br/m',sub:'sleep avg · range 13.5–16.3',   good: true,  values: daily.map(d => d.respiratory_rate) as (number|null)[], max:20, color:'var(--color-wolf)' },
-    { label: 'Wrist Temp',           main: '35.2 °C', sub: 'sleep baseline',                good: false, values: daily.map(d => d.wrist_temp_c),                max: 36,  color: '#ff6666' },
+    { label: 'Wrist Temp',           main: '95.4 °F', sub: 'sleep baseline',                good: false, values: daily.map(d => d.wrist_temp_c ? +(d.wrist_temp_c * 9/5 + 32).toFixed(1) : null),  max: 97,  color: '#ff6666' },
   ]
 
   return (
