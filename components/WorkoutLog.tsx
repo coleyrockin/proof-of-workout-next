@@ -29,8 +29,8 @@ export default function WorkoutLog({ workouts }: Props) {
               style={{
                 padding: '14px 12px',
                 display: 'flex', flexDirection: 'column', gap: '8px',
-                background: highlight ? '#0c1200' : 'var(--color-card)',
-                ...(highlight ? { border: '1px solid #2a4400', margin: '-1px' } : {}),
+                background: highlight ? '#001a33' : 'var(--color-card)',
+                ...(highlight ? { border: '1px solid #003d7a', margin: '-1px' } : {}),
               }}
             >
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', letterSpacing: '0.1em', color: 'var(--color-mid)' }}>{fmtDate(w.date)}</div>
@@ -43,7 +43,7 @@ export default function WorkoutLog({ workouts }: Props) {
                   fontFamily: 'var(--font-mono)', fontSize: '10px', padding: '2px 6px', flexShrink: 0,
                   ...(highlight
                     ? { background: 'var(--color-wolf)', color: 'var(--color-black)' }
-                    : { background: '#0f1f00', border: '1px solid #2a4400', color: 'var(--color-wolf)' }),
+                    : { background: '#001529', border: '1px solid #003d7a', color: 'var(--color-wolf)' }),
                 }}>
                   {w.calories} kcal
                 </div>

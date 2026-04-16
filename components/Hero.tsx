@@ -44,7 +44,7 @@ export default function Hero({ data }: Props) {
       {/* Apple Health badge */}
       <motion.div {...fadeUp(0.05)} style={{
         display: 'inline-flex', alignItems: 'center', gap: '6px',
-        background: 'var(--color-wolf)', color: 'var(--color-black)',
+        background: '#34c759', color: 'var(--color-black)',
         fontFamily: 'var(--font-mono)', fontSize: '10px', fontWeight: 500,
         letterSpacing: '0.14em', textTransform: 'uppercase',
         padding: '5px 12px', marginBottom: '20px',
@@ -64,7 +64,7 @@ export default function Hero({ data }: Props) {
       </motion.h1>
 
       {/* Subtitle */}
-      <motion.div {...fadeUp(0.15)} style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--color-mid)', letterSpacing: '0.04em', marginTop: '16px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+      <motion.div {...fadeUp(0.15)} style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--color-white)', letterSpacing: '0.04em', marginTop: '16px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
         COLEY &nbsp;·&nbsp;{' '}
         <span style={{ color: 'var(--color-wolf2)' }}>{fmtDate(weekStart)} – {fmtDate(weekEnd)}, 2026</span>
         &nbsp;·&nbsp; WEEK 15
@@ -76,7 +76,7 @@ export default function Hero({ data }: Props) {
           {kpis.slice(0, 3).map((k, i) => (
             <motion.div key={k.label} {...fadeUp(0.2 + i * 0.06)} style={{ display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'center' }}>
               <span style={{ fontFamily: 'var(--font-display)', fontSize: '38px', lineHeight: 1, color: 'var(--color-wolf)' }}>{k.val}</span>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-mid)' }}>{k.label}</span>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-white)' }}>{k.label}</span>
             </motion.div>
           ))}
         </div>
@@ -84,7 +84,7 @@ export default function Hero({ data }: Props) {
           {kpis.slice(3).map((k, i) => (
             <motion.div key={k.label} {...fadeUp(0.38 + i * 0.06)} style={{ display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'center' }}>
               <span style={{ fontFamily: 'var(--font-display)', fontSize: '38px', lineHeight: 1, color: 'var(--color-wolf)' }}>{k.val}</span>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-mid)' }}>{k.label}</span>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-white)' }}>{k.label}</span>
             </motion.div>
           ))}
         </div>

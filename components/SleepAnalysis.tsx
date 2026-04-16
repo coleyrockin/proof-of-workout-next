@@ -25,7 +25,7 @@ export default function SleepAnalysis({ sleep }: Props) {
           const m = s.total_min % 60
           const stages = [
             { label: 'Deep',  min: s.deep_min,  color: 'var(--color-blue)', max: MAX_MIN },
-            { label: 'REM',   min: s.rem_min,   color: 'var(--color-wolf)', max: MAX_MIN },
+            { label: 'REM',   min: s.rem_min,   color: 'var(--color-amber)', max: MAX_MIN },
             { label: 'Core',  min: s.core_min,  color: '#444444',           max: 500 },
           ]
           return (

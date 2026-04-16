@@ -10,7 +10,7 @@ export default function WeeklySummary({ summary: s }: Props) {
     { label: 'Total Steps',      val: s.steps_total.toLocaleString(),          unit: 'steps',    delta: `↑ ${s.steps_avg_per_day.toLocaleString()} avg/day`, color: 'var(--color-wolf)' },
     { label: 'Active Calories',  val: s.active_calories_total.toLocaleString(), unit: 'kcal',     delta: `↑ ${s.active_calories_avg_per_day} avg/day`,        color: 'var(--color-wolf)' },
     { label: 'Resting Calories', val: s.resting_calories_total.toLocaleString(),unit: 'kcal BMR', delta: `~${s.resting_calories_avg_per_day.toLocaleString()}/day`, color: 'var(--color-white)' },
-    { label: 'Total Calories',   val: s.total_calories.toLocaleString(),        unit: 'kcal',     delta: 'active + resting',                                  color: 'var(--color-amber)' },
+    { label: 'Total Calories',   val: s.total_calories.toLocaleString(),        unit: 'kcal',     delta: 'active + resting',                                  color: 'var(--color-red)' },
     { label: 'Exercise Time',    val: s.exercise_minutes_total.toString(),      unit: 'minutes',  delta: `${s.exercise_minutes_avg_per_day} avg/day`,          color: 'var(--color-wolf)' },
     { label: 'Avg Resting HR',   val: s.rhr_avg.toString(),                    unit: 'bpm avg',  delta: 'range 55–75',                                       color: 'var(--color-wolf)' },
     { label: 'Avg HRV',          val: s.hrv_avg_ms.toString(),                 unit: 'ms SDNN',  delta: 'peak 71 ms',                                        color: 'var(--color-wolf)' },
@@ -30,7 +30,7 @@ export default function WeeklySummary({ summary: s }: Props) {
             transition={{ duration: 0.4, delay: i * 0.04 }}
             style={{ background: 'var(--color-card)', padding: '16px 14px' }}
           >
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-mid)', marginBottom: '8px' }}>{t.label}</div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-white)', marginBottom: '8px' }}>{t.label}</div>
             <div style={{ fontFamily: 'var(--font-display)', fontSize: '32px', lineHeight: 1, letterSpacing: '1px', color: t.color }}>{t.val}</div>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', color: 'var(--color-mid)', marginTop: '6px' }}>{t.unit}</div>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', color: 'var(--color-wolf)', marginTop: '4px' }}>{t.delta}</div>

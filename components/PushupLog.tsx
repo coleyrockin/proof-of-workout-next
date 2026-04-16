@@ -44,7 +44,7 @@ export default function PushupLog({ pushups, total }: Props) {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.28 }}
-          style={{ background: '#0c1200', border: '1px solid #2a4400', margin: '-1px', padding: '20px 16px', textAlign: 'center' }}
+          style={{ background: '#0a1f0a', border: '1px solid #1a5c2a', margin: '-1px', padding: '20px 16px', textAlign: 'center' }}
         >
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-mid)', marginBottom: '8px' }}>Weekly Total</div>
           <div style={{ fontFamily: 'var(--font-display)', fontSize: '64px', lineHeight: 1, color: 'var(--color-wolf)' }}>{total}</div>

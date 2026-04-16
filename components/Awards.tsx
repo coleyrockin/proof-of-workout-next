@@ -4,12 +4,12 @@ import SectionHeader from './SectionHeader'
 import { IconActivity, IconGolf, IconHeartPulse, IconFlame, IconBicep, IconLightning } from '@/lib/icons'
 
 const AWARDS = [
-  { Icon: IconActivity,   title: 'VO₂ MAX PERSONAL BEST',  desc: 'Hit 38.3 mL/kg/min — up from 33.4 in February. 14.7% improvement in 10 weeks.' },
-  { Icon: IconGolf,       title: 'BIG GOLF WEEK',           desc: '4 rounds logged. Apr 12: 156-minute session burning 1,330 calories. Week\'s biggest single-session burn.' },
-  { Icon: IconHeartPulse, title: 'HRV RECOVERY SURGE',      desc: 'HRV climbed from 25 ms (Apr 8) to 71 ms by week\'s end — a 3× improvement signaling strong cardiovascular recovery.' },
-  { Icon: IconFlame,      title: '10K STEP DAY',            desc: 'Apr 8 hit 10,445 steps — the week\'s high — combined with 140 minutes of exercise and two workout sessions.' },
-  { Icon: IconBicep,      title: '140 PUSHUPS THIS WEEK',   desc: '5 sessions, best set at 40 reps on Apr 11. Building consistency in upper body work.' },
-  { Icon: IconLightning,  title: '19 WORKOUT SESSIONS',     desc: 'Golf, weight training, walking, yoga, running — 19 logged sessions across 7 active days.' },
+  { Icon: IconActivity,   color: '#248bf5', title: 'VO₂ MAX PERSONAL BEST',  desc: 'Hit 38.3 mL/kg/min — up from 33.4 in February. 14.7% improvement in 10 weeks.' },
+  { Icon: IconGolf,       color: '#34c759', title: 'BIG GOLF WEEK',           desc: '4 rounds logged. Apr 12: 156-minute session burning 1,330 calories. Week\'s biggest single-session burn.' },
+  { Icon: IconHeartPulse, color: '#ff6b6b', title: 'HRV RECOVERY SURGE',      desc: 'HRV climbed from 25 ms (Apr 8) to 71 ms by week\'s end — a 3× improvement signaling strong cardiovascular recovery.' },
+  { Icon: IconFlame,      color: '#ffaa22', title: '10K STEP DAY',            desc: 'Apr 8 hit 10,445 steps — the week\'s high — combined with 140 minutes of exercise and two workout sessions.' },
+  { Icon: IconBicep,      color: '#b366ff', title: '140 PUSHUPS THIS WEEK',   desc: '5 sessions, best set at 40 reps on Apr 11. Building consistency in upper body work.' },
+  { Icon: IconLightning,  color: '#00d4aa', title: '19 WORKOUT SESSIONS',     desc: 'Golf, weight training, walking, yoga, running — 19 logged sessions across 7 active days.' },
 ]
 
 export default function Awards() {
@@ -26,8 +26,8 @@ export default function Awards() {
             transition={{ delay: i * 0.07 }}
             style={{ background: 'var(--color-card)', padding: '14px 12px', display: 'flex', flexDirection: 'column', gap: '6px' }}
           >
-            <span style={{ color: 'var(--color-wolf)' }}><a.Icon size={20} /></span>
-            <span style={{ fontFamily: 'var(--font-display)', fontSize: '14px', letterSpacing: '1px', color: 'var(--color-wolf)', lineHeight: 1.2 }}>{a.title}</span>
+            <span style={{ color: a.color }}><a.Icon size={20} /></span>
+            <span style={{ fontFamily: 'var(--font-display)', fontSize: '14px', letterSpacing: '1px', color: a.color, lineHeight: 1.2 }}>{a.title}</span>
             <span style={{ fontFamily: 'var(--font-sans)', fontSize: '11px', color: 'var(--color-mid)', lineHeight: 1.5 }}>{a.desc}</span>
           </motion.div>
         ))}

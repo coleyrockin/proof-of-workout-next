@@ -15,7 +15,7 @@ export default function SectionHeader({ label, meta }: Props) {
       transition={{ duration: 0.4 }}
       style={{ borderBottom: '1px solid var(--color-border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px' }}
     >
-      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--color-mid)' }}>
+      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--color-white)' }}>
         {label}
       </span>
       {meta && (
