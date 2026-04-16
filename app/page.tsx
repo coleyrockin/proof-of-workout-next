@@ -1,5 +1,6 @@
 import { weekData } from '@/lib/data'
 import Hero from '@/components/Hero'
+import ActivityRings from '@/components/ActivityRings'
 import WeeklySummary from '@/components/WeeklySummary'
 import DailyTable from '@/components/DailyTable'
 import WorkoutLog from '@/components/WorkoutLog'
@@ -16,6 +17,7 @@ export default function Page() {
     <main style={{ maxWidth: '430px', margin: '0 auto', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Hero data={d} />
       <div style={{ display: 'flex', flexDirection: 'column', gap: '28px', padding: '0 0 28px' }}>
+        <ActivityRings summary={d.weekly_summary} daily={d.daily} workouts={d.workouts} />
         <WeeklySummary summary={d.weekly_summary} />
         <DailyTable daily={d.daily} />
         <WorkoutLog workouts={d.workouts} />
