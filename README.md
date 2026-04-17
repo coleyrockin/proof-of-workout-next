@@ -83,8 +83,8 @@ The entire experience is a **430 px-wide, dark-mode column** optimized for a 375
 ## Local Development
 
 ```bash
-git clone https://github.com/coleyrockin/proof-of-workout-next.git
-cd proof-of-workout-next
+git clone https://github.com/coleyrockin/POWO.git
+cd POWO
 npm install
 npm run dev
 ```
