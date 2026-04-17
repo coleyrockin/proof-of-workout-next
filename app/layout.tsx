@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: 'POWO — Proof of Workout',
   description:
-    'A week of Apple Health data, rendered into a mobile-first fitness dashboard. Cardiac metrics, sleep stages, VO₂ trends, and workouts — all from real data.',
+    'Proof of Workout — a week of Apple Health data turned into a mobile-first dashboard. VO₂, sleep stages, cardiac trends, and every session. Built from scratch.',
   keywords: ['Apple Health', 'fitness dashboard', 'Next.js', 'data visualization', 'HealthKit'],
   authors: [{ name: 'Coley Roberts' }],
   creator: 'Coley Roberts',

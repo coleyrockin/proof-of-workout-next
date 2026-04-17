@@ -21,7 +21,7 @@ export default function Page() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '28px', padding: '0 0 28px' }}>
         <ActivityRings summary={d.weekly_summary} daily={d.daily} workouts={d.workouts} />
         <WeeklySummary summary={d.weekly_summary} />
-        <DailyTable daily={d.daily} />
+        <DailyTable daily={d.daily} workouts={d.workouts} />
         <WorkoutLog workouts={d.workouts} />
         <CardiacMetrics daily={d.daily} />
         <VO2Chart trend={d.vo2_max_trend} />

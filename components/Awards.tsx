@@ -25,11 +25,11 @@ export default function Awards() {
             viewport={{ once: true }}
             transition={{ delay: i * 0.07 }}
             className="powo-lift"
-            style={{ background: 'var(--color-card)', padding: '14px 12px', display: 'flex', flexDirection: 'column', gap: '6px' }}
+            style={{ background: 'var(--color-card)', padding: '16px 14px', display: 'flex', flexDirection: 'column', gap: '8px' }}
           >
-            <span style={{ color: a.color }}><a.Icon size={20} /></span>
-            <span style={{ fontFamily: 'var(--font-display)', fontSize: '14px', letterSpacing: '1px', color: a.color, lineHeight: 1.2 }}>{a.title}</span>
-            <span style={{ fontFamily: 'var(--font-sans)', fontSize: '11px', color: 'var(--color-mid)', lineHeight: 1.5 }}>{a.desc}</span>
+            <span style={{ color: a.color, lineHeight: 0 }}><a.Icon size={22} /></span>
+            <span style={{ fontFamily: 'var(--font-display)', fontSize: '15px', letterSpacing: '1px', color: a.color, lineHeight: 1.15 }}>{a.title}</span>
+            <span style={{ fontFamily: 'var(--font-sans)', fontSize: '11px', color: 'var(--color-mid)', lineHeight: 1.55 }}>{a.desc}</span>
           </motion.div>
         ))}
       </div>

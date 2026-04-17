@@ -46,6 +46,32 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'ss01', 'tnum';
+}
+
+/* Tabular numbers everywhere DM Mono is used */
+[style*='font-mono'], code, pre {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Consistent focus ring */
+:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Selection color */
+::selection {
+  background: var(--accent-blue);
+  color: var(--color-black);
+}
+
+/* Link defaults */
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 /* Grain overlay */

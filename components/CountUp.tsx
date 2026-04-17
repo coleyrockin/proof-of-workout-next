@@ -32,6 +32,11 @@ export default function CountUp({
 
   useEffect(() => {
     if (!inView) return
+    const reduced = typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+    if (reduced) {
+      setDisplay(value)
+      return
+    }
     const start = performance.now()
     let frame = 0
     const tick = (now: number) => {

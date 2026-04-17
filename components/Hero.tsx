@@ -28,13 +28,13 @@ export default function Hero({ data }: Props) {
   ]
 
   return (
-    <header style={{ position: 'relative', overflow: 'hidden', borderBottom: '1px solid var(--color-border)', padding: '56px 24px 40px' }}>
+    <header style={{ position: 'relative', overflow: 'hidden', borderBottom: '1px solid var(--color-border)', padding: '52px 24px 36px' }}>
       {/* Ghost bg text */}
       <div
         style={{
-          position: 'absolute', right: '-20px', top: '-10px',
+          position: 'absolute', right: '-16px', top: '-8px',
           fontFamily: 'var(--font-display)', lineHeight: 1, userSelect: 'none', pointerEvents: 'none',
-          fontSize: 'clamp(90px, 28vw, 200px)',
+          fontSize: 'clamp(96px, 30vw, 220px)',
           WebkitTextStroke: '1px #1a1a1a', color: 'transparent', letterSpacing: '-4px',
         }}
         aria-hidden
