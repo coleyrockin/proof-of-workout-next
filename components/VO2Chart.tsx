@@ -5,7 +5,7 @@ import type { VO2Point } from '@/lib/types'
 
 interface Props { trend: VO2Point[] }
 
-const DATE_LABELS = ['Feb 1','Feb 8','Feb 15','Feb 22','Mar 1','Mar 8','Apr 12']
+const DATE_LABELS = ['Feb 1','Feb 8','Feb 15','Feb 22','Mar 1','Mar 8','Apr 7','Apr 14']
 const MIN_VAL = 32
 const MAX_VAL = 40
 const W = 700
@@ -36,41 +36,53 @@ export default function VO2Chart({ trend }: Props) {
       >
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '16px', gap: '12px' }}>
           <div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-mid)', marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-mid)', marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '8px' }}>
               Cardio Fitness Score
               <span style={{
-                fontFamily: 'var(--font-mono)', fontSize: '8px', letterSpacing: '0.18em',
+                fontFamily: 'var(--font-mono)', fontSize: '10px', letterSpacing: '0.18em',
                 color: 'var(--color-black)', background: 'var(--accent-amber)',
-                padding: '1px 5px', borderRadius: '2px', fontWeight: 600,
+                padding: '2px 6px', borderRadius: '2px', fontWeight: 700,
               }}>
                 PR
               </span>
             </div>
-            <div style={{ fontFamily: 'var(--font-display)', fontSize: '48px', lineHeight: 1, color: 'var(--color-wolf)' }}>
+            <div className="powo-glow-blue" style={{ fontFamily: 'var(--font-display)', fontSize: '48px', lineHeight: 1, color: 'var(--accent-blue)' }}>
               {current.toFixed(1)}
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '16px', color: 'var(--color-mid)', marginLeft: '8px' }}>mL/kg/min</span>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '16px', color: 'var(--color-mid)', marginLeft: '8px', textShadow: 'none' }}>mL/kg/min</span>
             </div>
           </div>
           <div style={{ textAlign: 'right' }}>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', color: 'var(--color-wolf)' }}>↑ +14.7%</div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', color: 'var(--color-mid)' }}>33.4 → {current.toFixed(2)}</div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', fontWeight: 600, color: 'var(--accent-blue)' }}>↑ +14.7%</div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--color-mid)', marginTop: '2px' }}>33.4 → {current.toFixed(2)}</div>
           </div>
         </div>
 
         <div style={{ width: '100%', overflow: 'hidden' }}>
-          <svg viewBox={`0 0 ${W} ${H}`} style={{ width: '100%', height: '90px' }} preserveAspectRatio="none">
+          <svg viewBox={`0 0 ${W} ${H}`} style={{ width: '100%', height: '90px', overflow: 'visible' }} preserveAspectRatio="none">
             <defs>
               <linearGradient id="vo2grad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="var(--color-wolf)" stopOpacity="0.2" />
-                <stop offset="100%" stopColor="var(--color-wolf)" stopOpacity="0" />
+                <stop offset="0%" stopColor="var(--accent-blue)" stopOpacity="0.35" />
+                <stop offset="100%" stopColor="var(--accent-blue)" stopOpacity="0" />
               </linearGradient>
+              <linearGradient id="vo2line" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#7ab4ff" />
+                <stop offset="100%" stopColor="var(--accent-blue)" />
+              </linearGradient>
+              <filter id="vo2glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="2" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
             </defs>
             <polygon points={area} fill="url(#vo2grad)" />
-            <polyline points={polyline} fill="none" stroke="var(--color-wolf)" strokeWidth="2" strokeLinejoin="round" />
+            <polyline points={polyline} fill="none" stroke="url(#vo2line)" strokeWidth="2.5" strokeLinejoin="round" filter="url(#vo2glow)" />
             {coords.map((p, i) => (
               <g key={i}>
-                <circle cx={p.x} cy={p.y} r="4" fill="#080808" stroke="var(--color-wolf)" strokeWidth="2" />
-                <text x={p.x} y={p.y - 10} textAnchor="middle" fill="var(--color-wolf)" fontFamily="DM Mono, monospace" fontSize="9">
+                <circle cx={p.x} cy={p.y} r="6" fill="var(--accent-blue)" opacity="0.25" />
+                <circle cx={p.x} cy={p.y} r="4" fill="#080808" stroke="var(--accent-blue)" strokeWidth="2" />
+                <text x={p.x} y={p.y - 12} textAnchor="middle" fill="var(--accent-blue)" fontFamily="DM Mono, monospace" fontSize="13" fontWeight="600">
                   {trend[i].value}
                 </text>
               </g>
@@ -78,7 +90,7 @@ export default function VO2Chart({ trend }: Props) {
           </svg>
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--font-mono)', fontSize: '9px', color: 'var(--color-mid)', marginTop: '4px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--color-mid)', marginTop: '6px' }}>
           {DATE_LABELS.map(l => <span key={l}>{l}</span>)}
         </div>
       </motion.div>

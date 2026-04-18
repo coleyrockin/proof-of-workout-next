@@ -9,7 +9,7 @@ interface Props {
   workouts: Workout[]
 }
 
-const DAY_LABELS = ['TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN', 'MON']
+const DAY_LABELS = ['SAT', 'SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI']
 
 export default function ActivityRings({ daily, workouts }: Props) {
   const maxCal = Math.max(...daily.map(d => d.active_calories))
@@ -43,7 +43,7 @@ export default function ActivityRings({ daily, workouts }: Props) {
           <div
             style={{
               fontFamily: 'var(--font-mono)',
-              fontSize: '9px',
+              fontSize: '11px',
               letterSpacing: '0.2em',
               textTransform: 'uppercase',
               color: 'var(--color-white)',
@@ -54,7 +54,7 @@ export default function ActivityRings({ daily, workouts }: Props) {
           <div
             style={{
               fontFamily: 'var(--font-mono)',
-              fontSize: '9px',
+              fontSize: '11px',
               letterSpacing: '0.15em',
               textTransform: 'uppercase',
               color: 'var(--color-mid)',
@@ -97,13 +97,13 @@ export default function ActivityRings({ daily, workouts }: Props) {
                     transition={{ delay: 0.7, duration: 0.3 }}
                     style={{
                       fontFamily: 'var(--font-mono)',
-                      fontSize: '7px',
+                      fontSize: '10px',
                       letterSpacing: '0.16em',
                       color: 'var(--color-black)',
                       background: 'var(--accent-amber)',
-                      padding: '1px 4px',
+                      padding: '2px 6px',
                       borderRadius: '2px',
-                      fontWeight: 600,
+                      fontWeight: 700,
                     }}
                   >
                     PEAK
@@ -167,11 +167,13 @@ export default function ActivityRings({ daily, workouts }: Props) {
                     transition={{ duration: 0.6, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
                     style={{
                       width: '100%',
-                      borderRadius: '3px 3px 0 0',
+                      borderRadius: '4px 4px 0 0',
                       background: isPeak
-                        ? 'var(--accent-amber)'
-                        : `rgba(36, 139, 245, ${0.25 + pct * 0.75})`,
-                      boxShadow: isPeak ? '0 0 20px rgba(255, 170, 34, 0.35)' : 'none',
+                        ? 'linear-gradient(180deg, #ffc857 0%, var(--accent-amber) 60%, #d98e0a 100%)'
+                        : `linear-gradient(180deg, rgba(94, 168, 255, ${0.4 + pct * 0.6}), rgba(36, 139, 245, ${0.3 + pct * 0.7}))`,
+                      boxShadow: isPeak
+                        ? '0 0 28px rgba(255, 170, 34, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.3)'
+                        : `0 0 12px rgba(36, 139, 245, ${0.15 + pct * 0.25}), inset 0 1px 0 rgba(255, 255, 255, 0.12)`,
                     }}
                   />
                 </div>
@@ -180,7 +182,7 @@ export default function ActivityRings({ daily, workouts }: Props) {
                 <div
                   style={{
                     fontFamily: 'var(--font-mono)',
-                    fontSize: '9px',
+                    fontSize: '11px',
                     letterSpacing: '0.08em',
                     color: isPeak ? 'var(--accent-amber)' : 'var(--color-mid)',
                     textAlign: 'center',

@@ -70,7 +70,7 @@ export default async function Image() {
           }}
         >
           <div style={{ display: 'flex', gap: '12px' }}>
-            <span style={{ color: '#248bf5' }}>54,071</span>
+            <span style={{ color: '#248bf5' }}>55,891</span>
             <span>steps</span>
           </div>
           <div style={{ display: 'flex', gap: '12px' }}>
@@ -82,7 +82,7 @@ export default async function Image() {
             <span>VO₂ max</span>
           </div>
           <div style={{ display: 'flex', gap: '12px' }}>
-            <span style={{ color: '#ff6b6b' }}>140</span>
+            <span style={{ color: '#ff6b6b' }}>190</span>
             <span>pushups</span>
           </div>
         </div>

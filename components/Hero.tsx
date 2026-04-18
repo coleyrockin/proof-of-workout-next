@@ -29,6 +29,23 @@ export default function Hero({ data }: Props) {
 
   return (
     <header style={{ position: 'relative', overflow: 'hidden', borderBottom: '1px solid var(--color-border)', padding: '52px 24px 36px' }}>
+      {/* Ambient color orbs — soft atmospheric depth */}
+      <div aria-hidden style={{
+        position: 'absolute', top: '-80px', left: '-60px', width: '320px', height: '320px',
+        borderRadius: '50%', background: 'radial-gradient(circle, rgba(36,139,245,0.18), transparent 70%)',
+        filter: 'blur(40px)', pointerEvents: 'none',
+      }} />
+      <div aria-hidden style={{
+        position: 'absolute', bottom: '-60px', right: '-40px', width: '260px', height: '260px',
+        borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,170,34,0.10), transparent 70%)',
+        filter: 'blur(40px)', pointerEvents: 'none',
+      }} />
+      <div aria-hidden style={{
+        position: 'absolute', top: '40%', right: '20%', width: '180px', height: '180px',
+        borderRadius: '50%', background: 'radial-gradient(circle, rgba(179,102,255,0.08), transparent 70%)',
+        filter: 'blur(40px)', pointerEvents: 'none',
+      }} />
+
       {/* Ghost bg text */}
       <div
         style={{
@@ -43,12 +60,12 @@ export default function Hero({ data }: Props) {
       </div>
 
       {/* Apple Health badge with live pulse */}
-      <motion.div {...fadeUp(0.05)} style={{
+      <motion.div {...fadeUp(0.05)} className="powo-badge-glow" style={{
         display: 'inline-flex', alignItems: 'center', gap: '8px',
-        background: 'var(--accent-green)', color: 'var(--color-black)',
-        fontFamily: 'var(--font-mono)', fontSize: '10px', fontWeight: 500,
+        background: 'linear-gradient(180deg, #3ddb6a 0%, #2bb04c 100%)', color: 'var(--color-black)',
+        fontFamily: 'var(--font-mono)', fontSize: '10px', fontWeight: 600,
         letterSpacing: '0.14em', textTransform: 'uppercase',
-        padding: '5px 12px', marginBottom: '20px',
+        padding: '5px 12px', marginBottom: '20px', borderRadius: '2px',
         position: 'relative',
       }}>
         <span aria-hidden style={{ position: 'relative', width: '7px', height: '7px', display: 'inline-block' }}>
@@ -71,24 +88,25 @@ export default function Hero({ data }: Props) {
           fontSize: 'clamp(56px, 18vw, 120px)', marginBottom: '6px',
         }}
       >
-        <span style={{ color: 'var(--color-wolf)' }}>PO</span><span style={{ color: 'var(--color-white)' }}>WO</span>
+        <span className="powo-glow-blue" style={{ color: 'var(--accent-blue)' }}>PO</span><span className="powo-glow-white" style={{ color: 'var(--color-white)' }}>WO</span>
       </motion.h1>
 
       {/* Subtitle */}
       <motion.div {...fadeUp(0.15)} style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--color-white)', letterSpacing: '0.04em', marginTop: '16px', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '8px' }}>
         <span>COLEY</span>
         <span style={{ color: 'var(--color-dim)' }}>·</span>
-        <span style={{ color: 'var(--color-wolf2)' }}>{fmtDate(weekStart)} – {fmtDate(weekEnd)}, 2026</span>
+        <span style={{ color: 'var(--accent-blue-dim)' }}>{fmtDate(weekStart)} – {fmtDate(weekEnd)}, 2026</span>
         <span style={{ color: 'var(--color-dim)' }}>·</span>
         <span style={{
           display: 'inline-block',
           border: '1px solid var(--accent-blue)',
           color: 'var(--accent-blue)',
-          padding: '1px 6px',
+          padding: '2px 7px',
           letterSpacing: '0.12em',
-          fontSize: '9px',
+          fontSize: '11px',
+          fontWeight: 600,
         }}>
-          WK 15 / 52
+          WK 16 / 52
         </span>
       </motion.div>
 
@@ -97,16 +115,28 @@ export default function Hero({ data }: Props) {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px 0' }}>
           {kpis.slice(0, 3).map((k, i) => (
             <motion.div key={k.label} {...fadeUp(0.2 + i * 0.06)} style={{ display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'center' }}>
-              <span style={{ fontFamily: 'var(--font-display)', fontSize: '38px', lineHeight: 1, color: k.color }}>{k.node}</span>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-white)' }}>{k.label}</span>
+              <span className={
+                k.color === 'var(--accent-blue)'   ? 'powo-glow-blue'   :
+                k.color === 'var(--accent-green)'  ? 'powo-glow-green'  :
+                k.color === 'var(--accent-amber)'  ? 'powo-glow-amber'  :
+                k.color === 'var(--accent-coral)'  ? 'powo-glow-coral'  :
+                k.color === 'var(--accent-purple)' ? 'powo-glow-purple' : ''
+              } style={{ fontFamily: 'var(--font-display)', fontSize: '38px', lineHeight: 1, color: k.color }}>{k.node}</span>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-white)' }}>{k.label}</span>
             </motion.div>
           ))}
         </div>
         <div style={{ display: 'flex', justifyContent: 'center', gap: '48px', marginTop: '24px' }}>
           {kpis.slice(3).map((k, i) => (
             <motion.div key={k.label} {...fadeUp(0.38 + i * 0.06)} style={{ display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'center' }}>
-              <span style={{ fontFamily: 'var(--font-display)', fontSize: '38px', lineHeight: 1, color: k.color }}>{k.node}</span>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-white)' }}>{k.label}</span>
+              <span className={
+                k.color === 'var(--accent-blue)'   ? 'powo-glow-blue'   :
+                k.color === 'var(--accent-green)'  ? 'powo-glow-green'  :
+                k.color === 'var(--accent-amber)'  ? 'powo-glow-amber'  :
+                k.color === 'var(--accent-coral)'  ? 'powo-glow-coral'  :
+                k.color === 'var(--accent-purple)' ? 'powo-glow-purple' : ''
+              } style={{ fontFamily: 'var(--font-display)', fontSize: '38px', lineHeight: 1, color: k.color }}>{k.node}</span>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-white)' }}>{k.label}</span>
             </motion.div>
           ))}
         </div>

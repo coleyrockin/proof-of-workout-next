@@ -1,11 +1,11 @@
 export default function Footer({ generated, week }: { generated: string, week: string }) {
   return (
     <footer style={{ borderTop: '1px solid var(--color-border)', textAlign: 'center', padding: '32px 16px 36px' }}>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', fontFamily: 'var(--font-mono)', fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--color-mid)' }}>
-        <span style={{ color: 'var(--color-wolf)', fontWeight: 500 }}>✓ Apple Health Verified</span>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '7px', fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--color-mid)' }}>
+        <span style={{ color: 'var(--accent-blue)', fontWeight: 600 }}>✓ Apple Health Verified</span>
         <span>Source: Apple HealthKit</span>
         <span>Generated {generated}</span>
-        <span style={{ color: 'var(--color-dim)', fontSize: '9px', marginTop: '2px' }}>{week}</span>
+        <span style={{ color: 'var(--color-mid)', fontSize: '11px', marginTop: '2px' }}>{week}</span>
       </div>
 
       <div
@@ -28,12 +28,12 @@ export default function Footer({ generated, week }: { generated: string, week: s
             lineHeight: 1,
           }}
         >
-          <span style={{ color: 'var(--color-wolf)' }}>PO</span>WO
+          <span style={{ color: 'var(--accent-blue)' }}>PO</span>WO
         </div>
         <div
           style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: '9px',
+            fontSize: '11px',
             letterSpacing: '0.18em',
             color: 'var(--color-mid)',
             textTransform: 'uppercase',
@@ -50,7 +50,7 @@ export default function Footer({ generated, week }: { generated: string, week: s
               href="https://github.com/coleyrockin"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: 'var(--color-wolf)', textDecoration: 'none' }}
+              style={{ color: 'var(--accent-blue)', textDecoration: 'none' }}
             >
               @coleyrockin
             </a>

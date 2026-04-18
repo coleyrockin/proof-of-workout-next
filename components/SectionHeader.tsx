@@ -29,6 +29,7 @@ export default function SectionHeader({ label, meta }: Props) {
           whileInView={{ scaleY: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="powo-tick"
           style={{
             display: 'inline-block',
             width: '2px',
@@ -40,8 +41,8 @@ export default function SectionHeader({ label, meta }: Props) {
         <span
           style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: '10px',
-            fontWeight: 600,
+            fontSize: '11px',
+            fontWeight: 700,
             letterSpacing: '0.22em',
             textTransform: 'uppercase',
             color: 'var(--color-white)',
@@ -54,10 +55,10 @@ export default function SectionHeader({ label, meta }: Props) {
         <span
           style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: '9px',
+            fontSize: '11px',
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
-            color: 'var(--color-wolf2)',
+            color: 'var(--accent-blue-dim)',
           }}
         >
           {meta}

@@ -32,32 +32,36 @@ export default function WorkoutLog({ workouts }: Props) {
               style={{
                 padding: '14px 12px',
                 display: 'flex', flexDirection: 'column', gap: '8px',
-                background: highlight ? '#001a33' : 'var(--color-card)',
+                background: highlight ? 'linear-gradient(180deg, #002648 0%, #00132a 100%)' : 'var(--color-card)',
                 position: 'relative',
-                ...(highlight ? { border: '1px solid #003d7a', margin: '-1px' } : {}),
+                ...(highlight ? {
+                  border: '1px solid #003d7a',
+                  margin: '-1px',
+                  boxShadow: 'inset 0 1px 0 rgba(36,139,245,0.25), 0 0 24px rgba(36,139,245,0.10)',
+                } : {}),
               }}
             >
               {isBest && (
                 <div style={{
                   position: 'absolute', top: '10px', right: '10px',
-                  fontFamily: 'var(--font-mono)', fontSize: '7px', letterSpacing: '0.18em',
+                  fontFamily: 'var(--font-mono)', fontSize: '10px', letterSpacing: '0.18em',
                   color: 'var(--color-black)', background: 'var(--accent-amber)',
-                  padding: '2px 5px', borderRadius: '2px', fontWeight: 600,
+                  padding: '2px 6px', borderRadius: '2px', fontWeight: 700,
                 }}>
                   BEST
                 </div>
               )}
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', letterSpacing: '0.1em', color: 'var(--color-mid)' }}>{fmtDate(w.date)}</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: '0.1em', color: 'var(--color-mid)' }}>{fmtDate(w.date)}</div>
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '8px' }}>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: '15px', letterSpacing: '1px', display: 'flex', alignItems: 'center', gap: '6px', color: highlight ? 'var(--color-wolf)' : 'var(--color-white)' }}>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: '15px', letterSpacing: '1px', display: 'flex', alignItems: 'center', gap: '6px', color: highlight ? 'var(--accent-blue)' : 'var(--color-white)' }}>
                   {(() => { const Icon = ACTIVITY_SVG_ICONS[w.activity] ?? ACTIVITY_SVG_ICONS['Unknown Activity']; return <Icon size={16} />; })()}
                   {w.activity === 'Weight Training' ? 'Weights' : w.activity === 'Unknown Activity' ? 'Activity' : w.activity}
                 </div>
                 <div style={{
-                  fontFamily: 'var(--font-mono)', fontSize: '10px', padding: '2px 6px', flexShrink: 0,
+                  fontFamily: 'var(--font-mono)', fontSize: '12px', fontWeight: 600, padding: '3px 8px', flexShrink: 0,
                   ...(highlight
-                    ? { background: 'var(--color-wolf)', color: 'var(--color-black)' }
-                    : { background: '#001529', border: '1px solid #003d7a', color: 'var(--color-wolf)' }),
+                    ? { background: 'var(--accent-blue)', color: 'var(--color-black)' }
+                    : { background: '#001529', border: '1px solid #003d7a', color: 'var(--accent-blue)' }),
                 }}>
                   {w.calories} kcal
                 </div>
@@ -72,9 +76,9 @@ export default function WorkoutLog({ workouts }: Props) {
                   </span>
                 )}
                 {intensity > 0 && (
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', color: 'var(--color-mid)', marginLeft: 'auto' }}>
-                    <span style={{ color: 'var(--accent-amber)' }}>{intensity.toFixed(1)}</span>
-                    <span style={{ fontSize: '8px', letterSpacing: '0.05em' }}> k/m</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', color: 'var(--color-mid)', marginLeft: 'auto' }}>
+                    <span style={{ color: 'var(--accent-amber)', fontWeight: 600 }}>{intensity.toFixed(1)}</span>
+                    <span style={{ fontSize: '10px', letterSpacing: '0.05em' }}> k/m</span>
                   </span>
                 )}
               </div>
