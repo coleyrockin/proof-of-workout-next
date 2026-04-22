@@ -57,7 +57,7 @@ export default function VO2Chart({ trend }: Props) {
           </div>
         </div>
 
-        <div style={{ width: '100%', overflow: 'hidden' }}>
+        <div style={{ width: '100%', overflow: 'visible' }}>
           <svg viewBox={`0 0 ${W} ${H}`} style={{ width: '100%', height: '90px', overflow: 'visible' }} preserveAspectRatio="none">
             <defs>
               <linearGradient id="vo2grad" x1="0" y1="0" x2="0" y2="1">

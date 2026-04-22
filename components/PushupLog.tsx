@@ -63,6 +63,7 @@ export default function PushupLog({ pushups, total }: Props) {
             border: '1px solid #1a5c2a',
             boxShadow: 'inset 0 1px 0 rgba(52,199,89,0.25), 0 0 24px rgba(52,199,89,0.10)',
             margin: '-1px', padding: '20px 16px', textAlign: 'center',
+            gridColumn: 'span 2',
           }}
         >
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-mid)', marginBottom: '8px' }}>Weekly Total</div>
