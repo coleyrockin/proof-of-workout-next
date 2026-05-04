@@ -1,3 +1,7 @@
+// Curated dashboard import only.
+// Do not paste or commit raw Apple Health exports here; keep this file limited to
+// minimized fields intentionally shown in the public dashboard.
+
 export interface ImportedDailyMetric {
   date: string
   steps: number

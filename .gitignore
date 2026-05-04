@@ -33,6 +33,20 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# private health exports
+/exports/
+/raw-exports/
+/raw_exports/
+/health-exports/
+/apple-health-export/
+/apple_health_export/
+health-export*.json
+apple-health*.json
+apple_health*.json
+export.xml
+export_cda.xml
+apple_health_export*.zip
+
 # vercel
 .vercel
 
