@@ -173,6 +173,10 @@ section {
   padding-top: 0;
 }
 
+section[id] {
+  scroll-margin-top: 58px;
+}
+
 /* ── Table hover ── */
 tbody tr:hover {
   background: #141414 !important;

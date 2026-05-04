@@ -15,25 +15,28 @@ export default function Awards({ data }: Props) {
   const bestStepDate = new Date(data.summary.best_days.max_steps.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
   const totalKm = Math.round(data.summary.period_totals.total_distance_km)
   const totalKcal = Math.round(data.summary.period_totals.total_active_kcal)
+  const pushupTotal = data.pushups.weeks.reduce((total, week) => total + week.total, 0)
+  const peakPushupWeek = data.pushups.weeks.reduce((best, week) => week.total > best.total ? week : best, data.pushups.weeks[0])
+  const vo2Days = Math.max(1, Math.round((new Date(`${v.peak.date}T00:00:00`).getTime() - new Date(`${v.first.date}T00:00:00`).getTime()) / 86_400_000))
 
   const AWARDS = [
     { Icon: IconActivity,   color: 'var(--accent-teal)',   title: 'VO₂ MAX PR',
-      desc: `Peaked at ${v.peak.value.toFixed(2)} mL/kg/min on ${new Date(v.peak.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}. Up from ${v.first.value.toFixed(1)} on Feb 7 — +${since.toFixed(1)}% across 60 days.` },
+      desc: `Peaked at ${v.peak.value.toFixed(2)} mL/kg/min on ${new Date(v.peak.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}. Up from ${v.first.value.toFixed(1)} on ${new Date(v.first.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} — +${since.toFixed(1)}% across ${vo2Days} days.` },
     { Icon: IconFlame,      color: 'var(--accent-amber)',  title: '18K STEP DAY',
       desc: `${data.summary.best_days.max_steps.value.toLocaleString()} steps on ${bestStepDate} — 2.4× daily average. Same day: 267 exercise minutes, 2,521 active kcal — full triple PR.` },
     { Icon: IconGolf,       color: 'var(--accent-green)',  title: golf ? `${golf.sessions} GOLF ROUNDS` : 'GOLF MILEAGE',
       desc: golf ? `${Math.round(golf.total_calories).toLocaleString()} kcal across ${Math.round(golf.total_duration_min / 60)} hours of play. Highest-burn activity in the period — true cardio engine.` : '' },
     { Icon: IconLightning,  color: 'var(--accent-coral)',  title: pickle ? `${pickle.sessions} PICKLEBALL SESSIONS` : 'PICKLEBALL VOLUME',
       desc: pickle ? `${Math.round(pickle.total_duration_min / 60)} hours · ${Math.round(pickle.total_calories).toLocaleString()} kcal. Game tempo elevated walking HR consistently above 130 bpm.` : '' },
-    { Icon: IconBicep,      color: 'var(--accent-purple)', title: '450+ PUSHUPS',
-      desc: 'Logged 450 pushup reps across 4 tracked weeks. Peak week 190 reps · Apr 12–18. Volume reduced last week to protect left shoulder.' },
+    { Icon: IconBicep,      color: 'var(--accent-purple)', title: `${pushupTotal}+ PUSHUPS`,
+      desc: `Logged ${pushupTotal.toLocaleString()} pushup reps across ${data.pushups.weeks.length} tracked weeks. Peak week ${peakPushupWeek.total} reps. Volume reduced last week to protect left shoulder.` },
     { Icon: IconHeartPulse, color: 'var(--accent-blue)',   title: `${totalKm} KM TRAVELED`,
-      desc: `${totalKm} km on foot in 91 days · ${totalKcal.toLocaleString()} active kcal burned · ${data.summary.period_totals.total_flights_climbed.toLocaleString()} flights climbed. ${skating ? `${skating.sessions} skate sessions across ${(skating.total_distance_m! / 1000).toFixed(1)} km.` : ''}` },
+      desc: `${totalKm} km on foot in ${data.meta.period.days} days · ${totalKcal.toLocaleString()} active kcal burned · ${data.summary.period_totals.total_flights_climbed.toLocaleString()} flights climbed. ${skating ? `${skating.sessions} skate sessions across ${(skating.total_distance_m! / 1000).toFixed(1)} km.` : ''}` },
   ]
 
   return (
     <section id="awards">
-      <SectionHeader label="Achievements" meta="91-day highlights" />
+      <SectionHeader label="Achievements" meta={`${data.meta.period.days}-day highlights`} />
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', alignItems: 'stretch', gap: '8px', padding: '10px', background: 'var(--color-card)', border: '1px solid var(--color-border)', borderTop: 'none' }}>
         {AWARDS.map((a, i) => (
           <motion.div

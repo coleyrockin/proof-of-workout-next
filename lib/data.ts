@@ -1,7 +1,9 @@
 // lib/data.ts — POWO 91-day Apple Health export
 import type { HealthData } from './types'
+import { latestHealthExport } from './imported-health-export'
+import { normalizeHealthExport } from './normalize-health-export'
 
-export const healthData: HealthData = {
+const baseHealthData: HealthData = {
   meta: {
     owner: 'Coley',
     generated_at: '2026-04-27T21:51:56-05:00',
@@ -397,3 +399,5 @@ export const healthData: HealthData = {
     },
   },
 }
+
+export const healthData: HealthData = normalizeHealthExport(baseHealthData, latestHealthExport)

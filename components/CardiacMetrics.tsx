@@ -65,7 +65,7 @@ export default function CardiacMetrics({ data }: Props) {
 
   return (
     <section id="cardiac">
-      <SectionHeader label="Cardiac Metrics" meta="91-day baseline · 14-day trend" />
+      <SectionHeader label="Cardiac Metrics" meta={`${data.meta.period.days}-day baseline · 14-day trend`} />
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', alignItems: 'stretch', gap: '1px', background: 'var(--color-border)', border: '1px solid var(--color-border)', borderTop: 'none' }}>
         {tiles.map((v, i) => {
           const dirArrow = v.delta === null ? '' : v.delta > 0 ? '↑' : v.delta < 0 ? '↓' : '·'
@@ -85,7 +85,7 @@ export default function CardiacMetrics({ data }: Props) {
                 v.color === 'var(--accent-purple)' ? 'powo-glow-purple' :
                 v.color === 'var(--accent-teal)'   ? 'powo-glow-teal'   : ''
               } style={{ fontFamily: 'var(--font-display)', fontSize: '24px', lineHeight: 1, color: v.color }}>{v.baseline.toFixed(v.decimals)}</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', color: 'var(--color-mid)', marginTop: '4px' }}>{v.unit} · 91-day baseline</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', color: 'var(--color-mid)', marginTop: '4px' }}>{v.unit} · {data.meta.period.days}-day baseline</div>
               <div style={{ marginTop: '8px' }}>
                 <Sparkline values={v.vals} color={v.color} max={v.sparkMax} min={v.sparkMin} />
               </div>

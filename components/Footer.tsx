@@ -1,4 +1,14 @@
-export default function Footer({ generated, period }: { generated: string; period: string }) {
+export default function Footer({
+  generated,
+  period,
+  through,
+  partialDate,
+}: {
+  generated: string
+  period: string
+  through: string
+  partialDate?: string
+}) {
   const fmtDate = (iso: string) => {
     const d = new Date(iso)
     return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
@@ -9,7 +19,8 @@ export default function Footer({ generated, period }: { generated: string; perio
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '7px', fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--color-mid)' }}>
         <span style={{ color: 'var(--accent-blue)', fontWeight: 600 }}>✓ Apple Health Verified</span>
         <span>Source: Apple HealthKit</span>
-        <span>Generated {fmtDate(generated)}</span>
+        <span>Latest Apple Health export: {fmtDate(generated)}</span>
+        <span>Through {fmtDate(`${through}T00:00:00`)}{partialDate ? ` · ${fmtDate(`${partialDate}T00:00:00`)} partial` : ''}</span>
         <span style={{ color: 'var(--color-mid)', fontSize: '11px', marginTop: '2px' }}>{period}</span>
       </div>
 

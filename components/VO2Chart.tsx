@@ -85,7 +85,7 @@ export default function VO2Chart({ trend }: Props) {
 
   return (
     <section id="vo2">
-      <SectionHeader label="VO₂ Max · 91-Day Trajectory" meta={`${trend.length} readings`} />
+      <SectionHeader label="VO₂ Max Trajectory" meta={`${trend.length} readings`} />
       <motion.div
         initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
         style={{ background: 'var(--color-card)', border: '1px solid var(--color-border)', borderTop: 'none', padding: '20px 16px 18px' }}

@@ -14,20 +14,24 @@ export default function WeeklySummary({ data }: Props) {
   const since = ((v.peak.value - v.first.value) / v.first.value) * 100
   const esbCount = (t.total_flights_climbed / 102).toFixed(1)
   const totalMi = (t.total_distance_km * 0.621371).toFixed(0)
+  const activityTypeCount = data.workout_summary.length
+  const bestStepMultiplier = b.max_steps.value / a.avg_daily_steps
+  const bestBurnMultiplier = b.max_active_kcal.value / a.avg_active_kcal
+  const totalExerciseHours = Math.round(t.total_exercise_min / 60)
 
   const tiles = [
-    { label: 'Total Steps',      val: t.total_steps.toLocaleString(),                    unit: '91 days',                      delta: `↑ ${a.avg_daily_steps.toLocaleString()} avg/day`,                                                  color: 'var(--accent-green)'  },
+    { label: 'Total Steps',      val: t.total_steps.toLocaleString(),                    unit: `${data.meta.period.days} days`, delta: `↑ ${a.avg_daily_steps.toLocaleString()} avg/day`,                                                  color: 'var(--accent-green)'  },
     { label: 'Active Calories',  val: Math.round(t.total_active_kcal).toLocaleString(),  unit: 'kcal active',                  delta: `↑ ${Math.round(a.avg_active_kcal)} avg/day`,                                                       color: 'var(--accent-amber)'  },
     { label: 'Distance',         val: t.total_distance_km.toFixed(1),                    unit: `km · ${totalMi} mi`,           delta: `${(t.total_distance_km / data.meta.period.days).toFixed(1)} km/day · ≈ LA → SF`,                  color: 'var(--accent-purple)' },
-    { label: 'Exercise Time',    val: t.total_exercise_min.toLocaleString(),             unit: 'minutes',                      delta: `${Math.round(a.avg_exercise_min)} min/day · 100 hrs total`,                                         color: 'var(--accent-blue)'   },
-    { label: 'Workouts Logged',  val: t.total_workouts.toString(),                       unit: 'sessions',                     delta: '11 activity types',                                                                                 color: 'var(--accent-coral)'  },
+    { label: 'Exercise Time',    val: t.total_exercise_min.toLocaleString(),             unit: 'minutes',                      delta: `${Math.round(a.avg_exercise_min)} min/day · ${totalExerciseHours} hrs total`,                       color: 'var(--accent-blue)'   },
+    { label: 'Workouts Logged',  val: t.total_workouts.toString(),                       unit: 'sessions',                     delta: `${activityTypeCount} activity types`,                                                               color: 'var(--accent-coral)'  },
     { label: 'Flights Climbed',  val: t.total_flights_climbed.toLocaleString(),          unit: 'floors',                       delta: `≈ ${esbCount}× Empire State`,                                                                       color: 'var(--accent-purple)' },
     { label: 'VO₂ Max',          val: v.current.value.toFixed(2),                        unit: 'mL/kg/min · current',          delta: `peak ${v.peak.value.toFixed(2)} · +${since.toFixed(1)}% since Feb`,                                color: 'var(--accent-teal)'   },
     { label: 'Avg Resting HR',   val: a.avg_resting_hr.toFixed(1),                       unit: 'bpm',                          delta: 'period baseline',                                                                                  color: 'var(--accent-coral)'  },
     { label: 'Avg HRV',          val: a.avg_hrv_ms.toFixed(1),                           unit: 'ms SDNN',                      delta: 'period baseline',                                                                                  color: 'var(--accent-green)'  },
-    { label: 'Best Day · Steps', val: b.max_steps.value.toLocaleString(),                unit: new Date(b.max_steps.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }), delta: '2.4× daily average',     color: 'var(--accent-amber)'  },
-    { label: 'Best · Burn',      val: Math.round(b.max_active_kcal.value).toLocaleString(), unit: new Date(b.max_active_kcal.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }), delta: '3.1× daily average', color: 'var(--accent-coral)' },
-    { label: 'Best · Move',      val: b.max_exercise_min.value.toString(),               unit: `min · ${new Date(b.max_exercise_min.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`,             delta: '4.4 hrs of exercise',     color: 'var(--accent-purple)' },
+    { label: 'Best Day · Steps', val: b.max_steps.value.toLocaleString(),                unit: new Date(b.max_steps.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }), delta: `${bestStepMultiplier.toFixed(1)}× daily average`, color: 'var(--accent-amber)'  },
+    { label: 'Best · Burn',      val: Math.round(b.max_active_kcal.value).toLocaleString(), unit: new Date(b.max_active_kcal.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }), delta: `${bestBurnMultiplier.toFixed(1)}× daily average`, color: 'var(--accent-coral)' },
+    { label: 'Best · Move',      val: b.max_exercise_min.value.toString(),               unit: `min · ${new Date(b.max_exercise_min.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`,             delta: `${(b.max_exercise_min.value / 60).toFixed(1)} hrs of exercise`, color: 'var(--accent-purple)' },
   ]
 
   // Weekly aggregates — bucketed Mon-Sun; pick best & worst by exercise minutes
@@ -39,7 +43,7 @@ export default function WeeklySummary({ data }: Props) {
 
   return (
     <section id="period">
-      <SectionHeader label="Period Summary" meta="91 days · Q1 2026" />
+      <SectionHeader label="Period Summary" meta={`${data.meta.period.days} days · 2026`} />
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', alignItems: 'stretch', gap: '1px', background: 'var(--color-border)', border: '1px solid var(--color-border)', borderTop: 'none' }}>
         {tiles.map((t, i) => (
           <motion.div
@@ -73,7 +77,7 @@ export default function WeeklySummary({ data }: Props) {
           <div style={{ color: 'var(--color-mid)', fontSize: '10px', letterSpacing: '0.12em' }}>EX·MIN</div>
           <div style={{ color: 'var(--color-mid)', fontSize: '10px', letterSpacing: '0.12em' }}>RHR/HRV</div>
           {Object.entries(data.monthly).map(([month, m]) => {
-            const label = month.slice(-2) === '02' ? 'FEB' : month.slice(-2) === '03' ? 'MAR' : 'APR'
+            const label = new Date(`${month}-01T00:00:00`).toLocaleDateString('en-US', { month: 'short' }).toUpperCase()
             return (
               <div key={month} style={{ display: 'contents' }}>
                 <div style={{ color: 'var(--color-white)', fontWeight: 600, letterSpacing: '0.08em' }}>{label}</div>

@@ -18,6 +18,9 @@ import Footer from '@/components/Footer'
 
 export default function Page() {
   const d = healthData
+  const partialDay = [...d.daily].reverse().find(day =>
+    day.active_kcal === null || day.exercise_min === null || day.avg_hr === null || day.hrv_ms === null
+  )
   return (
     <main className="powo-shell">
       <ScrollProgress />
@@ -31,13 +34,18 @@ export default function Page() {
         <VO2Chart trend={d.vo2_max} />
         <CardiacMetrics data={d} />
         <SleepAnalysis sleep={d.sleep} />
-        <WorkoutLog workouts={d.workouts} workoutSummary={d.workout_summary} />
+        <WorkoutLog workouts={d.workouts} workoutSummary={d.workout_summary} periodDays={d.meta.period.days} />
         <PushupLog pushups={d.pushups} />
         <RestRecommendation data={d} />
         <WorkoutRecommendation data={d} />
         <Awards data={d} />
       </div>
-      <Footer generated={d.meta.generated_at} period={`${d.meta.period.start} → ${d.meta.period.end}`} />
+      <Footer
+        generated={d.meta.generated_at}
+        period={`${d.meta.period.start} → ${d.meta.period.end}`}
+        through={d.meta.period.end}
+        partialDate={partialDay?.date}
+      />
     </main>
   )
 }

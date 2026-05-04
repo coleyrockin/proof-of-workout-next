@@ -7,6 +7,7 @@ import type { Workout, WorkoutTypeSummary } from '@/lib/types'
 interface Props {
   workouts: Workout[]
   workoutSummary: WorkoutTypeSummary[]
+  periodDays: number
 }
 
 function fmtDate(iso: string) {
@@ -42,7 +43,7 @@ const ACTIVITY_COLORS: Record<string, string> = {
   'Core Training': 'var(--color-mid)',
 }
 
-export default function WorkoutLog({ workouts, workoutSummary }: Props) {
+export default function WorkoutLog({ workouts, workoutSummary, periodDays }: Props) {
   const totalSessions = workoutSummary.reduce((a, w) => a + w.sessions, 0)
   const totalCal = workoutSummary.reduce((a, w) => a + w.total_calories, 0)
   const top = [...workouts].sort((a, b) => b.calories - a.calories).slice(0, 6)
@@ -97,7 +98,7 @@ export default function WorkoutLog({ workouts, workoutSummary }: Props) {
       </div>
 
       {/* Top single sessions */}
-      <SectionHeader label="Top Sessions" meta="all 91 days" />
+      <SectionHeader label="Top Sessions" meta={`all ${periodDays} days`} />
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', alignItems: 'stretch', gap: '1px', background: 'var(--color-border)', border: '1px solid var(--color-border)', borderTop: 'none' }}>
         {top.map((w, i) => {
           const highlight = w.calories >= 500

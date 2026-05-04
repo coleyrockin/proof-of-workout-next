@@ -314,7 +314,7 @@ export function buildRestRecommendation(data: HealthData): RestRecommendation {
 
   const reasons: string[] = []
   if (r.vo2DeltaPct < -2) reasons.push(`VO₂ max ${r.vo2DeltaPct.toFixed(1)}% off peak`)
-  if (r.rhrDelta !== null && r.rhrDelta > 3) reasons.push(`RHR +${r.rhrDelta.toFixed(1)} bpm above 91-day baseline`)
+  if (r.rhrDelta !== null && r.rhrDelta > 3) reasons.push(`RHR +${r.rhrDelta.toFixed(1)} bpm above ${data.meta.period.days}-day baseline`)
   if (r.hrvDelta !== null && r.hrvDelta < -5) reasons.push(`HRV ${r.hrvDelta.toFixed(1)} ms below baseline`)
   if (r.walkingHrRecent && r.walkingHrRecent > 130) reasons.push(`Walking HR ${r.walkingHrRecent.toFixed(0)} bpm — elevated`)
   if (s.deepBelowTarget) reasons.push(`Deep sleep ${s.avgDeepPct.toFixed(1)}% — below 13% target`)
@@ -545,7 +545,7 @@ export function buildWorkoutRecommendation(data: HealthData): WorkoutRecommendat
   return {
     cycle_name: 'Recovery-Led Build · Week 1',
     rationale:
-      'Built around your 91-day load: huge aerobic base from walking/golf/pickleball, but VO₂ rolling off peak and shoulder flagged. ' +
+      `Built around your ${data.meta.period.days}-day load: huge aerobic base from walking/golf/pickleball, but VO₂ rolling off peak and shoulder flagged. ` +
       'This cycle protects the shoulder, defends sleep, and reintroduces lower-body strength + power without spiking systemic load.',
     start_date: fmt(start),
     end_date: fmt(end),

@@ -1,10 +1,13 @@
 import { ImageResponse } from 'next/og'
+import { healthData } from '@/lib/data'
 
 export const alt = 'POWO — Proof of Workout'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
 export default async function Image() {
+  const pushups = healthData.pushups.weeks.reduce((total, week) => total + week.total, 0)
+
   return new ImageResponse(
     (
       <div
@@ -55,7 +58,7 @@ export default async function Image() {
             POWO
           </div>
           <div style={{ fontSize: '36px', color: '#c0c0c0', display: 'flex' }}>
-            Proof of Workout — a week, in data.
+            Proof of Workout — Apple Health, in data.
           </div>
         </div>
 
@@ -70,19 +73,19 @@ export default async function Image() {
           }}
         >
           <div style={{ display: 'flex', gap: '12px' }}>
-            <span style={{ color: '#248bf5' }}>55,891</span>
+            <span style={{ color: '#248bf5' }}>{healthData.summary.period_totals.total_steps.toLocaleString()}</span>
             <span>steps</span>
           </div>
           <div style={{ display: 'flex', gap: '12px' }}>
-            <span style={{ color: '#34c759' }}>19</span>
+            <span style={{ color: '#34c759' }}>{healthData.summary.period_totals.total_workouts}</span>
             <span>workouts</span>
           </div>
           <div style={{ display: 'flex', gap: '12px' }}>
-            <span style={{ color: '#ffaa22' }}>38.3</span>
+            <span style={{ color: '#ffaa22' }}>{healthData.summary.vo2_max_progression.peak.value.toFixed(1)}</span>
             <span>VO₂ max</span>
           </div>
           <div style={{ display: 'flex', gap: '12px' }}>
-            <span style={{ color: '#ff6b6b' }}>190</span>
+            <span style={{ color: '#ff6b6b' }}>{pushups}</span>
             <span>pushups</span>
           </div>
         </div>
