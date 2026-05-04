@@ -24,9 +24,9 @@
   --accent-purple:   #b366ff;
   --accent-teal:     #00d4aa;
 
-  --font-display: 'Bebas Neue', sans-serif;
-  --font-mono:    'DM Mono', monospace;
-  --font-sans:    'DM Sans', sans-serif;
+  --font-display: var(--font-bebas-neue), sans-serif;
+  --font-mono:    var(--font-dm-mono), monospace;
+  --font-sans:    var(--font-dm-sans), sans-serif;
 }
 
 :root {
