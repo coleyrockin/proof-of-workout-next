@@ -11,7 +11,10 @@ interface Props {
 
 export default function ActivityRings({ daily, workouts }: Props) {
   const last14 = daily.slice(-14)
-  const maxCal = Math.max(...last14.map(d => d.active_kcal ?? 0))
+  const calValues = last14
+    .map(d => d.active_kcal)
+    .filter((cal): cal is number => cal !== null)
+  const maxCal = calValues.length > 0 ? Math.max(...calValues) : 0
 
   // Group workouts by date
   const workoutsByDate: Record<string, string[]> = {}
@@ -35,15 +38,23 @@ export default function ActivityRings({ daily, workouts }: Props) {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(14, 1fr)', gap: '3px', alignItems: 'flex-end' }}>
           {last14.map((d, i) => {
             const isPartial = d.active_kcal === null
-            const cal = d.active_kcal ?? 0
-            const pct = maxCal > 0 ? cal / maxCal : 0
-            const isPeak = cal === maxCal && cal > 0
+            const cal = d.active_kcal
+            const pct = maxCal > 0 && cal !== null ? cal / maxCal : 0
+            const isPeak = cal !== null && cal === maxCal && cal > 0
             const dayWorkouts = workoutsByDate[d.date] ?? []
             const barHeight = Math.max(Math.round(pct * 96), 4)
             const dow = new Date(d.date + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'short' })[0]
+            const calLabel = cal === null ? 'partial active calorie data' : `${Math.round(cal).toLocaleString()} active calories`
+            const workoutLabel = dayWorkouts.length > 0 ? `, workouts: ${dayWorkouts.join(', ')}` : ''
 
             return (
-              <div key={d.date} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' }}>
+              <div
+                key={d.date}
+                role="img"
+                aria-label={`${d.date}: ${calLabel}${workoutLabel}`}
+                title={`${d.date}: ${calLabel}${workoutLabel}`}
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' }}
+              >
                 {isPeak && (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.7, duration: 0.3 }}
@@ -60,7 +71,7 @@ export default function ActivityRings({ daily, workouts }: Props) {
                 </div>
 
                 <div style={{ fontFamily: 'var(--font-display)', fontSize: isPeak ? '11px' : '10px', color: isPeak ? 'var(--accent-amber)' : isPartial ? 'var(--color-dim)' : 'var(--color-white)', textAlign: 'center', lineHeight: 1, letterSpacing: '0.5px' }}>
-                  {isPartial ? '--' : cal >= 1000 ? (cal / 1000).toFixed(1) + 'k' : Math.round(cal)}
+                  {cal === null ? '--' : cal >= 1000 ? (cal / 1000).toFixed(1) + 'k' : Math.round(cal)}
                 </div>
 
                 <div style={{ width: '100%', height: '96px', display: 'flex', alignItems: 'flex-end' }}>

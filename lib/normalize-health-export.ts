@@ -11,7 +11,6 @@ import type {
 import type { ImportedDailyMetric, ImportedHealthExport, ImportedWorkout } from './imported-health-export'
 
 const shiftedSignalStart = '2026-02-19'
-const latestOverrideStart = '2026-04-26'
 
 function round(value: number, digits = 1): number {
   const scale = 10 ** digits
@@ -22,6 +21,13 @@ function addDays(iso: string, days: number): string {
   const d = new Date(`${iso}T00:00:00`)
   d.setDate(d.getDate() + days)
   return d.toISOString().slice(0, 10)
+}
+
+function earliestDate(values: string[]): string | null {
+  return values.reduce<string | null>((earliest, value) => {
+    if (earliest === null || value < earliest) return value
+    return earliest
+  }, null)
 }
 
 function numericValues(values: (number | null | undefined)[]): number[] {
@@ -93,9 +99,10 @@ function withShiftedSignals(day: DailyMetric, nextDay: DailyMetric | undefined):
 function buildDaily(base: HealthData, latest: ImportedHealthExport): DailyMetric[] {
   const byDate = new Map(base.daily.map(day => [day.date, day]))
   const overrides = new Map(latest.dailyOverrides.map(day => [day.date, mapDailyOverride(day)]))
+  const firstOverrideDate = earliestDate(latest.dailyOverrides.map(day => day.date)) ?? addDays(latest.period.end, 1)
 
   const carriedBase = base.daily
-    .filter(day => day.date >= latest.period.start && day.date < latestOverrideStart)
+    .filter(day => day.date >= latest.period.start && day.date < firstOverrideDate)
     .map(day => withShiftedSignals(day, byDate.get(addDays(day.date, 1))))
 
   return [...carriedBase, ...overrides.values()]
@@ -123,8 +130,11 @@ function mapWorkout(workout: ImportedWorkout): Workout {
 }
 
 function buildWorkouts(base: HealthData, latest: ImportedHealthExport): Workout[] {
+  const firstImportedWorkoutDate =
+    earliestDate(latest.workouts.map(workout => workout.start.slice(0, 10))) ?? addDays(latest.period.end, 1)
+
   const carriedBase = base.workouts.filter(workout =>
-    workout.date >= latest.period.start && workout.date < '2026-04-27'
+    workout.date >= latest.period.start && workout.date < firstImportedWorkoutDate
   )
 
   return [...latest.workouts.map(mapWorkout), ...carriedBase]

@@ -10,7 +10,7 @@ const baseHealthData: HealthData = {
     source: 'Apple HealthKit',
     period: { start: '2026-01-27', end: '2026-04-27', days: 91 },
     schema_version: '2.0',
-    notes: "Weight reading: 79.4 kg (175 lbs) on 2026-02-25. 'Unknown Activity' workouts relabeled as 'Pickleball' per user. Workout count: 160. Pushup week of Apr 20-26: ~100 reps (shoulders fatigued). Sleep stage data added for 14 nights (Mar 31 – Apr 15).",
+    notes: "Weight reading: 79.4 kg (175 lbs) on 2026-02-25. 'Unknown Activity' workouts relabeled as 'Pickleball' per user. Workout count: 160. Pushup week of Apr 20-26: ~100 reps (shoulders fatigued). Sleep stage data added for 13 nights (Mar 31 – Apr 15).",
   },
   profile: {
     age_band: 'mid-20s',
